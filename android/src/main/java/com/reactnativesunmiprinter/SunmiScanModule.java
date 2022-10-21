@@ -29,12 +29,14 @@ public class SunmiScanModule extends ReactContextBaseJavaModule {
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent intent) {
       if (intent != null) {
         Bundle bundle = intent.getExtras();
-        ArrayList<HashMap<String, String>> result = (ArrayList<HashMap<String, String>>) bundle.getSerializable("data");
-        if (null != result) {
-          Iterator<HashMap<String, String>> it = result.iterator();
-          while (it.hasNext()) {
-            HashMap hashMap = it.next();
-            sendEvent(hashMap.get("VALUE").toString());
+        if (bundle != null) {
+          ArrayList<HashMap<String, String>> result = (ArrayList<HashMap<String, String>>) bundle.getSerializable("data");
+          if (null != result) {
+            Iterator<HashMap<String, String>> it = result.iterator();
+            while (it.hasNext()) {
+              HashMap hashMap = it.next();
+              sendEvent(hashMap.get("VALUE").toString());
+            }
           }
         }
       }
@@ -75,3 +77,4 @@ public class SunmiScanModule extends ReactContextBaseJavaModule {
     reactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit("onScanSuccess", msg);
   }
 }
+

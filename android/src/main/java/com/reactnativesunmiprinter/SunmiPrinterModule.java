@@ -475,10 +475,10 @@ public void commitPrint(ReadableArray readableArray) throws RemoteException {
 
     TransBean bean = new TransBean();
     if (item.hasKey("type")) {
-      bean.setType(item.getInt("type"));
+      bean.setType((byte) item.getInt("type"));
     }
     if (item.hasKey("value")) {
-      bean.setValue(item.getString("value"));
+      bean.value = item.getString("value");
     }
     transBeans[i] = bean;
   }
